@@ -13,7 +13,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.ConfigurationReader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SpartanTestWithPath {
@@ -72,5 +74,43 @@ public class SpartanTestWithPath {
         assertEquals(phone,3312820936l);
 
     }
+
+    @Test
+    public void AllSpartanWithPath(){
+
+        Response response = given().auth().basic("admin", "admin")
+                .when().get("/api/spartans");
+        assertEquals(response.statusCode(), 200);
+
+        //verify the content type
+        System.out.println(response.getHeader("Content-Type"));
+        assertEquals(response.getHeader("Content-Type"), "application/json;charset=UTF-8");
+
+        //headers value print
+        System.out.println(response.headers().getValue("Transfer-Encoding"));
+
+        // check header is on there or not
+        System.out.println(response.headers().hasHeaderWithName("Date"));
+
+       int firstId = response.path("id[1]");
+        System.out.println("firstId = " + firstId);
+        
+        String firstName = response.path("name[2]");
+        System.out.println("firstName = " + firstName);
+
+        String lastFirstName = response.path("name[-1]");
+        System.out.println("lastFirstName = " + lastFirstName);
+
+        //print all first names from spartans
+
+        List<String> names = response.path("name");
+        System.out.println(names);
+
+        List<Object> phones = response.path("phone");
+        for (Object eachPhone : phones) {
+            System.out.println(eachPhone);
+        }
+    }
+
 
 }

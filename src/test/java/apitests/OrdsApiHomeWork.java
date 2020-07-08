@@ -1,6 +1,7 @@
 package apitests;
 
 import io.restassured.RestAssured;
+import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import utilities.ConfigurationReader;
 import io.restassured.RestAssured;
@@ -39,11 +40,25 @@ public class OrdsApiHomeWork {
     @Test
     public void q1(){
 
-                given().accept(ContentType.JSON).
+        Response response = given().accept(ContentType.JSON).
                 and().queryParam("q", "{\"country_id\": \"US\"}")
-                        .when().get("countries")
-                        .then().assertThat().statusCode(200)
-                        .and().assertThat().contentType("application/json");
+                .when().get("countries");
+
+        //Verify the statusCode
+        assertEquals(response.statusCode(), 200);
+
+        //Verify the Content Type
+        assertEquals(response.contentType(), "application/json");
+
+        //Verify the country_id is US
+       assertEquals(response.path("items.country_id[0]"), "US");
+
+       // Verify country_name
+        assertEquals(response.path("items.country_name[0]"), "United States of America");
+
+        // Verify region_id
+        int reg_id = response.path("items.region_id[0]");
+        assertEquals(reg_id, 2);
 
     }
 
