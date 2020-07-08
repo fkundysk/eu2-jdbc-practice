@@ -20,6 +20,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.ConfigurationReader;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

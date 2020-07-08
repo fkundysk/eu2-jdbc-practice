@@ -4,6 +4,7 @@ package apitests;
 import io.restassured.path.json.JsonPath;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
+import static org.hamcrest.Matchers.*;
 import org.testng.annotations.BeforeClass;
 import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
@@ -47,6 +48,26 @@ public class HamcrestMatchersApiTest {
                 .and().auth().basic("admin", "admin")
         .when().get("http://100.26.244.91:8000/api/spartans/{id}")
         .then().statusCode(200)
-                .assertThat().contentType("application/json;charset=UTF-8");
+                .assertThat().contentType("application/json;charset=UTF-8")
+                .and().assertThat().body("id", equalTo(15),
+                "name", equalTo("Meta"),
+                                        "gender", equalTo("Female"),
+                                        "phone", equalTo(1938695106));
     }
+    @Test
+    public void teacherData(){
+        given().accept(ContentType.JSON)
+                .pathParam("id","6884")
+                .when().get("http://api.cybertektraining.com/teacher/{id}")
+                .then().assertThat().statusCode(200)
+                        .and().contentType("application/json;charset=UTF-8")
+                        .and().header("Content-Length",equalTo("254"))
+                        .and().header("Connection", equalTo("Keep-Alive") )
+                        .and().header("Date", notNullValue())
+                        .and().body("teachers.firstName[0]", equalTo("Harold"))
+                        .and().body("teachers.lastName[0]", equalTo("Kim"),
+                        "teachers.gender[0]",equalTo("Male"));
+
+    }
+
 }

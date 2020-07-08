@@ -22,9 +22,7 @@ public class CBTrainingWithJsonPath {
 
     @BeforeClass
     public void before(){
-
         baseURI = ConfigurationReader.getProperty("cbtapi_url");
-
     }
 
     @Test

@@ -1,4 +1,4 @@
-package apitests;
+package HomeWork;
 
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
