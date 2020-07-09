@@ -70,4 +70,16 @@ public class HamcrestMatchersApiTest {
 
     }
 
+    @Test
+    public void TeacherWithDepartments(){
+
+        given().accept(ContentType.JSON)
+                .pathParam("name", "Computer")
+                .when().get("http://api.cybertektraining.com/teacher/department/{name}")
+             .then().statusCode(200).and().contentType("application/json;charset=UTF-8")
+             .and().assertThat().body("teachers.firstName", hasItems("tvrec", "Marteen","Alexander"));
+
+
+    }
+
 }

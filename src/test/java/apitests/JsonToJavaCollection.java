@@ -64,6 +64,10 @@ public class JsonToJavaCollection {
 
         //print first spartan first name
         System.out.println(allSpartanList.get(0).get("name"));
+        //get one spartan from list and assign to map
+        Map<String, Object> spartan2 = allSpartanList.get(1);
+        //print the name for second spartan
+        System.out.println(spartan2.get("name"));
 
     }
     @Test
@@ -81,10 +85,15 @@ public class JsonToJavaCollection {
 
         System.out.println(regionMap.get("items"));
 
-//        List<Map<String, Object>> itemList = (List<Map<String, Object>>) regionMap.get("items");
-//
-//        System.out.println(itemList.get(0).get("region_name"));
-    }
+       List<Map<String,Object>> itemsList = (List<Map<String, Object>>) regionMap.get("items");
 
+        //get second region information(which you want key's value that region_name is here in map)
+        System.out.println("itemsList.get(1) = " + itemsList.get(1));
+        System.out.println("List(indeaxnumber1)'s value  = " + itemsList.get(1).get("region_name"));
+
+        //print europe
+        System.out.println(itemsList.get(0).get("region_name"));
+
+    }
 
 }

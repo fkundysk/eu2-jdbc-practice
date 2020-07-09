@@ -62,9 +62,6 @@ public class OrdsApiHomeWork {
 
     }
 
-
-
-
      /*   Q2:
     - Given accept type is Json
     - Query param value - q={"department_id":80}
@@ -75,6 +72,8 @@ public class OrdsApiHomeWork {
     - And all department_ids are 80
     - Count is 25
     */
+
+
 
 
     /*    Q3:
