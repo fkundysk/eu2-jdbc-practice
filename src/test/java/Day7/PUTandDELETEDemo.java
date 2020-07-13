@@ -45,8 +45,8 @@ public class PUTandDELETEDemo {
                 .and().auth().basic("admin", "admin")
                 .and().pathParam("id", 340)
                 .and().body(putMap)
-                .when().put("/api/spartans/{id}").then()
-                .assertThat().statusCode(204);
+                .when().put("/api/spartans/{id}")
+                .then().assertThat().statusCode(204);
 
 
     }
