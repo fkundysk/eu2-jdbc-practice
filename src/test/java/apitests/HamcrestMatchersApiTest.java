@@ -72,12 +72,17 @@ public class HamcrestMatchersApiTest {
 
     @Test
     public void TeacherWithDepartments(){
+        //it is like a contains but it is looking just first names
+        //what is difference from other (upper Matchers); others assert one data
+        // here we are assert list of teachers.firstnames  like for each loop checking contain exact matching names
+        // tat we wanted check names
 
         given().accept(ContentType.JSON)
                 .pathParam("name", "Computer")
-                .when().get("http://api.cybertektraining.com/teacher/department/{name}")
-             .then().statusCode(200).and().contentType("application/json;charset=UTF-8")
-             .and().assertThat().body("teachers.firstName", hasItems("tvrec", "Marteen","Alexander"));
+        .when().get("http://api.cybertektraining.com/teacher/department/{name}")
+                .then().statusCode(200).and().contentType("application/json;charset=UTF-8")
+                .and().assertThat().body("teachers.firstName", hasItems("tvrec", "Marteen","Alexander"));
+
 
 
     }

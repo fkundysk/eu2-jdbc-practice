@@ -1,4 +1,5 @@
 package Day6;
+import Day6.Spartan;
 import com.google.gson.Gson;
 import org.testng.annotations.Test;
 import io.restassured.RestAssured;
@@ -36,7 +37,7 @@ public class PostRequestDemo {
       "name":"MikeEU",
       "phone":8877445596
    }
-    When user sends POST request to '/spartans/'
+    When user sends POST request to '/api/spartans/'
     Then status code 201
     And content type should be application/json
     And json payload/response should contain:
@@ -56,7 +57,7 @@ public class PostRequestDemo {
                 .and().contentType(ContentType.JSON)
                 .and().auth().basic("admin", "admin")
                 .and().body(jsonBody)
-                .when().post("/api/spartans");
+                 .when().post("/api/spartans");
 
         //verify status code
         assertEquals(response.statusCode(),201);
@@ -158,7 +159,7 @@ public class PostRequestDemo {
         long phone =response.path("data.phone");
 
         //assertion
-        assertEquals(name,"MikeEU");
+        assertEquals(name,"MikeEU");//assertEquals(name,spartan.getNAme())
         assertEquals(gender,"Male");
         assertEquals(phone,8877445596l);
 

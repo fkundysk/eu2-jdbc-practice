@@ -49,6 +49,10 @@ public class POJO_Deserialize {
 
         System.out.println("spartan15 = " + spartan15.toString());
 
+        //also we can assertion values
+       assertEquals(spartan15.getName(), "Meta");
+       assertEquals(spartan15.getId(),15);
+
     }
     @Test
     public void regionWithPojo(){
@@ -97,6 +101,9 @@ public class POJO_Deserialize {
 
         String jsonSpartanEU = gson.toJson(spartanEU);
         System.out.println(jsonSpartanEU);
+
+        //gson or jackson is called objectMapper, jsonparser, data binding library
+
     }
 
 }

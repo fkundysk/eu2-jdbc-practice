@@ -41,6 +41,9 @@ public class JsonToJavaCollection {
         assertEquals(response.statusCode(),200);
 
         //we will convert Json Response to Java Collection
+        // Also we can use Map<String, ?> spartanMap = response.body().as(Map.class);
+        // We need to dependency for this converting
+
         Map<String,Object> spartanMap = response.body().as(Map.class);
 
         System.out.println(spartanMap);
@@ -62,7 +65,9 @@ public class JsonToJavaCollection {
 
         System.out.println(allSpartanList);
 
-        //print first spartan first name
+       // System.out.println(allSpartanList.get(0));
+
+        //print first spartan first name (first get for index second get for key name)
         System.out.println(allSpartanList.get(0).get("name"));
         //get one spartan from list and assign to map
         Map<String, Object> spartan2 = allSpartanList.get(1);
