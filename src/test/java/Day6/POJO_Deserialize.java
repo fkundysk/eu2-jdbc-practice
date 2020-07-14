@@ -95,7 +95,7 @@ public class POJO_Deserialize {
         System.out.println(spartan.toString());
 
         //-------------------SERIALIZATION----------------
-        //JAVA Collections/Pojo to JSON
+        //JAVA Collections/POJO to JSON
 
         Spartan spartanEU = new Spartan(200,"Mike","Male",123123123);
 

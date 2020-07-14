@@ -11,6 +11,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
 import io.restassured.RestAssured;
+
+import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.*;
 
 import io.restassured.http.ContentType;
@@ -144,6 +146,15 @@ public class PostRequestDemo {
                 .and().auth().basic("admin", "admin")
                 .and().body(spartanEU)
                 .when().post("/api/spartans");
+
+//        given().accept(ContentType.JSON)
+//                .and().contentType(ContentType.JSON)
+//                .and().auth().basic("admin", "admin")
+//                .and().body(spartanEU)
+//                .when().post("/api/spartans")
+//                .then().assertThat().body("success",equalTo("A Spartan is Born!"));
+
+
 
         //verify status code
         assertEquals(response.statusCode(),201);

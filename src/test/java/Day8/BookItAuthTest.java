@@ -1,12 +1,12 @@
 package Day8;
 
 import io.restassured.RestAssured;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import io.restassured.module.jsv.JsonSchemaValidator;
-import io.restassured.response.ValidatableResponse;
 import org.testng.annotations.BeforeClass;
 import utilities.ConfigurationReader;
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
@@ -18,23 +18,20 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.ConfigurationReader;
-
-
-public class JsonSchemaValidation {
+public class BookItAuthTest {
+    String accessToken = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxOTkxIiwiYXVkIjoic3R1ZGVudC10ZWFtLWxlYWRlciJ9.PejlP7F8p8bA9BGqol3jfWESaPRP5lBkIy7q2huN-4s";
 
     @BeforeClass
-    public void beforeClass(){
-        RestAssured.baseURI = ConfigurationReader.getProperty("spartanapi_url");;
+    public void before(){
+        RestAssured.baseURI = "https://cybertek-reservation-api-qa.herokuapp.com";
     }
 
     @Test
-    public void JsonSchemaValidationForSpartan(){
-        given().accept(ContentType.JSON)
-                .and().auth().basic("admin", "admin")
-                .pathParam("id", 50)
-                .when().get("/api/spartans/{id}").then()
-                .assertThat().statusCode(200)
-                .and().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("SingleSpartanSchema.json"));
+    public void getAllCampuses(){
+        Response response = given().header("Authorization", accessToken)
+                .when().get("/api/campuses");
+
+        response.prettyPrint();
     }
 
 }
